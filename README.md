@@ -6,7 +6,6 @@ A beginner-friendly **NestJS** backend project demonstrating how to handle, vali
 
 ## 🚀 Overview
 The **Pulse News Engine** is an API that serves news articles from a mock database (TypeScript Array). Instead of using URL parameters for everything, it uses **Custom Headers** to handle:
-* **Security:** Via `x-api-key`.
 * **Filtering:** Via `x-category`.
 * **Localization:** Via `accept-language`.
 
@@ -64,7 +63,6 @@ Fetches news based on your header preferences.
 1.  **Using Postman:**
     * Set the request type to `GET`.
     * Go to the **Headers** tab.
-    * Add `x-api-key: Pulse2025`.
     * Add `x-category: tech`.
 
 2.  **Using the Frontend:**
