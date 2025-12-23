@@ -42,7 +42,6 @@ Fetches news based on your header preferences.
 
 | Header Key | Required | Value Example | Description |
 | :--- | :--- | :--- | :--- |
-| `x-api-key` | **Yes** | `Pulse2025` | Validates access to the API. |
 | `x-category` | No | `tech`, `sports`, `gaming` | Filters the news array. |
 | `accept-language` | No | `en`, `es`, `fr` | Returns text in the chosen language. |
 
