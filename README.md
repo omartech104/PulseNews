@@ -74,5 +74,4 @@ Fetches news based on your header preferences.
 ## 🧠 Learning Objectives
 * Mastering the NestJS **Request Lifecycle**.
 * Using **TypeScript Interfaces** to manage data objects.
-* Understanding **CORS** (Cross-Origin Resource Sharing).
 * Implementing **Fallbacks** for missing headers.
