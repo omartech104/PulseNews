@@ -1,98 +1,81 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📰 Pulse News Engine
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A beginner-friendly **NestJS** backend project demonstrating how to handle, validate, and process **HTTP Headers** to provide a localized and filtered news experience.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🚀 Overview
+The **Pulse News Engine** is an API that serves news articles from a mock database (TypeScript Array). Instead of using URL parameters for everything, it uses **Custom Headers** to handle:
+* **Security:** Via `x-api-key`.
+* **Filtering:** Via `x-category`.
+* **Localization:** Via `accept-language`.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## 🛠️ Features
+* **Header Validation:** Uses NestJS `Pipes` and `DTOs` to ensure headers are sent correctly.
+* **Data Transformation:** Automatically switches news content between **English**, **Spanish**, and **French** based on headers.
+* **Category Filtering:** Filters a mock database array based on user preferences.
+* **Frontend Integration:** Includes a simple HTML/CSS/JS dashboard to test the API visually.
 
-```bash
-$ npm install
-```
+---
 
-## Compile and run the project
+## 📂 Project Structure
 
-```bash
-# development
-$ npm run start
+### Backend (NestJS)
+* `news.controller.ts`: Handles incoming requests and extracts headers.
+* `news.service.ts`: Contains the `newsData` array and logic for filtering/translating.
+* `dto/header.dto.ts`: Defines the "shape" and validation rules for our headers.
+* `pipes/request-header.ts`: A custom decorator to grab headers cleanly.
 
-# watch mode
-$ npm run start:dev
+### Frontend (HTML/CSS/JS)
+* `index.html`: The user interface.
+* `style.css`: Modern "News Card" styling.
+* `script.js`: Uses the `fetch()` API to send custom headers to the backend.
 
-# production mode
-$ npm run start:prod
-```
+---
 
-## Run tests
+## 📡 API Endpoints & Headers
 
-```bash
-# unit tests
-$ npm run test
+### `GET /news/filter`
+Fetches news based on your header preferences.
 
-# e2e tests
-$ npm run test:e2e
+| Header Key | Required | Value Example | Description |
+| :--- | :--- | :--- | :--- |
+| `x-api-key` | **Yes** | `Pulse2025` | Validates access to the API. |
+| `x-category` | No | `tech`, `sports`, `gaming` | Filters the news array. |
+| `accept-language` | No | `en`, `es`, `fr` | Returns text in the chosen language. |
 
-# test coverage
-$ npm run test:cov
-```
+---
 
-## Deployment
+## ⚙️ Setup Instructions
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+### 1. Backend Setup
+1.  Navigate to your NestJS project folder.
+2.  Install dependencies: `npm install class-validator class-transformer`.
+4.  Start the server: `npm run start:dev`.
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 2. Frontend Setup
+1.  Open `index.html` in any modern web browser.
+2.  Ensure the URL in `script.js` matches your NestJS server (usually `http://localhost:3000`).
 
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
+---
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## 🧪 How to Test
+1.  **Using Postman:**
+    * Set the request type to `GET`.
+    * Go to the **Headers** tab.
+    * Add `x-api-key: Pulse2025`.
+    * Add `x-category: tech`.
 
-## Resources
+2.  **Using the Frontend:**
+    * Select a language from the dropdown.
+    * Click **Update News**.
 
-Check out a few resources that may come in handy when working with NestJS:
+---
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+## 🧠 Learning Objectives
+* Mastering the NestJS **Request Lifecycle**.
+* Using **TypeScript Interfaces** to manage data objects.
+* Understanding **CORS** (Cross-Origin Resource Sharing).
+* Implementing **Fallbacks** for missing headers.
